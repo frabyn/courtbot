@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'courtbot.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': os.getenv('PGSQL_NAME'),
         'USER': os.getenv('PGSQL_USER'),
         'HOST': os.getenv('PGSQL_SERVER'),
         'PORT': '5432',
