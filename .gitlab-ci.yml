@@ -15,7 +15,7 @@ test:
   - pip3 install -r requirements.txt
   - python3 manage.py makemigrations
   - python3 manage.py migrate
-  - python3 manage.py test --noinput
+  - python3 manage.py test --noinput --keepdb
 
 debug:
   stage: debug
@@ -25,4 +25,4 @@ debug:
   - pip3 install -r requirements.txt
   - python3 manage.py makemigrations
   - python3 manage.py migrate
-  - python3 manage.py testserver
+  - python3 manage.py runserver
