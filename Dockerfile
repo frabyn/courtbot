@@ -13,7 +13,4 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY . /usr/src/app
 
-# For Django
-CMD ["python3", "manage.py", "makemigrations"]
-CMD ["python3", "manage.py", "migrate"]
 EXPOSE 5000
