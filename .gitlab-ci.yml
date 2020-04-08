@@ -1,6 +1,12 @@
 default:
   image: python:latest
 
+include:
+  - template: Serverless.gitlab-ci.yml
+
+deploy:
+  extends: .serverless:deploy:image
+
 
 stages:
   - test
