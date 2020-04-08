@@ -1,0 +1,152 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Harris County Criminal Court Information{% endblock %}</title>
+    <link rel="stylesheet" href="{% static "case_manager/styles.css" %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Get all "navbar-burger" elements
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+            // Check if there are any navbar burgers
+            if ($navbarBurgers.length > 0) {
+
+                // Add a click event on each of them
+                $navbarBurgers.forEach(el => {
+                    el.addEventListener('click', () => {
+
+                        // Get the target from the "data-target" attribute
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+
+                        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+                    });
+                });
+            }
+        });
+    </script>
+    {% block extrahead %}{% endblock extrahead %}
+    {% block extra_js %}{% endblock extra_js %}
+</head>
+
+<body class="has-navbar">
+
+<nav class="navbar is-primary is-transparent" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <span class="navbar-item">
+            <img src="{% static "case_manager/Harris_County_Logo.png" %}"
+                 alt="Harris County Logo">
+        </span>
+        <span class="navbar-item">
+            <span class="has-text-weight-bold">Harris County Criminal Courts at Law<br />
+                Your Courts Online</span>
+        </span>
+        <a role="button" class="navbar-burger is-white" data-target="navMenu" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        <div class="navbar-start">
+            <div class="navbar-item">
+
+            </div>
+        </div>
+
+        <div class="navbar-end">
+
+            <div class="navbar-item">
+                <div class="field is-grouped">
+                    <p class="control">
+                        <a class="is-white button" href="{% url 'case_manager:index' %}">
+                                <span class="icon">
+                                    <i class="fas fa-home" aria-hidden="true"></i>
+                                </span>
+                            <span class="is-primary">Home</span>
+                        </a>
+                    </p>
+
+                    <p class="control">
+                        <a class="is-white button" href="{% url 'case_manager:search' %}">
+                                <span class="icon">
+                                    <i class="fas fa-search" aria-hidden="true"></i>
+                                </span>
+                            <span class="is-primary">Case Search</span>
+                        </a>
+                    </p>
+
+                    <p class="control">
+                        <a class="is-white button" href="{% url 'paper_pusher:index' %}">
+                                <span class="icon">
+                                    <i class="fas fa-file-alt" aria-hidden="true"></i>
+                                </span>
+                            <span class="is-primary">Court Forms</span>
+                        </a>
+                    </p>
+
+                    {% if user.is_staff %}
+                        <p class="control">
+                            <a class="is-white button" href="{% url 'case_manager:upload' %}">
+                                <span class="icon">
+                                    <i class="fas fa-file-upload" aria-hidden="true"></i>
+                                </span>
+                                <span class="is-primary">Upload Data</span>
+                            </a>
+                        </p>
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+
+                        <p class="control">
+                            <a class="is-white button" href="{% url 'logout' %}">
+                                <span class="icon">
+                                    <i class="fas fa-door-open" aria-hidden="true"></i>
+                                </span>
+                                <span class="is-primary">Log Out</span>
+                            </a>
+                        </p>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+</nav>
+
+        <div class="notification is-warning">
+                                <span class="icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </span>
+            Court operations are disrupted by the COVID-19 global pandemic
+        </div>
+
+{% if messages %}
+
+    {% for message in messages %}
+        <div class="notification {% if message.tags %}is-{{ message.tags }}{% endif %}"
+        <button class="delete"></button>
+        {{ message }}
+        </div>
+    {% endfor %}
+
+{% endif %}
+
+{% block content %}
+
+    <!-- everything outside this gets inherited by the extended template -->
+
+{% endblock %}
+</body>
+
+</html>
