@@ -22,4 +22,5 @@ test:
   variables:
     COURTBOT_SECRET: $COURTBOT_SECRET
   script:
+    - echo $PGSQL_USER
     - python manage.py test
