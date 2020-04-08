@@ -1,3 +1,7 @@
+default:
+  image: python:latest
+
+
 stages:
   - test
   - deploy
