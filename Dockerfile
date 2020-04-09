@@ -47,6 +47,9 @@ ADD . /code/
 # uWSGI will listen on this port
 EXPOSE 8000
 
+# Import the secret from the build env
+ENV COURTBOT_SECRET=$COURTBOT_SECRET
+
 # Call collectstatic:
 RUN DATABASE_URL=$DATABASE_URL python manage.py collectstatic --noinput
 
