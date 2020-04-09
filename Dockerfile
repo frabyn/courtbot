@@ -1,5 +1,11 @@
 FROM python:3.7-slim
 
+RUN echo $PGSQL_NAME
+RUN echo $PGSQL_SECRET
+RUN echo $PGSQL_SERVER
+RUN echo $PGSQL_USER
+RUN echo $COURTBOT_SECRET
+
 # Create a group and user to run our app
 ARG APP_USER=appuser
 RUN groupadd -r ${APP_USER} && useradd --no-log-init -r -g ${APP_USER} ${APP_USER}
