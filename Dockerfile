@@ -1,11 +1,5 @@
 FROM python:3.7-slim
 
-RUN echo $PGSQL_NAME
-RUN echo $PGSQL_SECRET
-RUN echo $PGSQL_SERVER
-RUN echo $PGSQL_USER
-RUN echo $COURTBOT_SECRET
-
 # Create a group and user to run our app
 ARG APP_USER=appuser
 RUN groupadd -r ${APP_USER} && useradd --no-log-init -r -g ${APP_USER} ${APP_USER}
@@ -54,7 +48,7 @@ ADD . /code/
 EXPOSE 8000
 
 # Call collectstatic:
-RUN python manage.py collectstatic --noinput
+RUN DATABASE_URL=$DATABASE_URL python manage.py collectstatic --noinput
 
 # Tell uWSGI where to find your wsgi file (change this):
 ENV UWSGI_WSGI_FILE=courtbot/wsgi.py
