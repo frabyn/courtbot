@@ -25,7 +25,8 @@ SECRET_KEY = 'doitlive' # os.getenv('COURTBOT_SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*.harriscountycourt.info']
+ALLOWED_HOSTS = ['*.harriscountycourt.info',
+                 "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -78,9 +79,14 @@ WSGI_APPLICATION = 'courtbot.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'courtbot_admin@courtbot',
+        'PASSWORD': 'Y4CuUfqe6zEbeLCpDuuw2yAxoXWTBHhKCDMhgjbY',
+        'HOST': 'courtbot.postgres.database.azure.com',
+        'PORT': '5432',
+
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

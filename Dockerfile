@@ -48,7 +48,7 @@ ADD . /code/
 EXPOSE 8000
 
 # Call collectstatic:
-RUN DATABASE_URL='' COURTBOT_SECRET='secret' python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput
 
 # Tell uWSGI where to find your wsgi file (change this):
 ENV UWSGI_WSGI_FILE=courtbot/wsgi.py
@@ -69,7 +69,7 @@ ENV UWSGI_STATIC_MAP="/static/=/code/static/" UWSGI_STATIC_EXPIRES_URI="/static/
 USER ${APP_USER}:${APP_USER}
 
 # Uncomment after creating your docker-entrypoint.sh
-ENTRYPOINT ["/code/docker-entrypoint.sh"]
+# ENTRYPOINT ["/code/docker-entrypoint.sh"]
 
 # Start uWSGI
 CMD ["uwsgi", "--show-config"]
