@@ -130,7 +130,7 @@ AWS_S3_ENDPOINT_URL = 'https://courtbot.us-east-1.linodeobjects.com'
 AWS_ACCESS_KEY_ID = 'P46GRQNF2S8YP2MH1OSI'
 AWS_SECRET_ACCESS_KEY = 'xNVIdNcu0E6O4XGJvC78CV8Ciylkx4DtsZAZBVUH'
 AWS_STORAGE_BUCKET_NAME = 'courtbot'
-AWS_DEFAULT_ACL = None
+AWS_DEFAULT_ACL = 'public-read'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
