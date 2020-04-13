@@ -126,6 +126,7 @@ USE_TZ = True
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_ENDPOINT_URL = 'https://courtbot.us-east-1.linodeobjects.com'
 AWS_ACCESS_KEY_ID = 'P46GRQNF2S8YP2MH1OSI'
 AWS_SECRET_ACCESS_KEY = 'xNVIdNcu0E6O4XGJvC78CV8Ciylkx4DtsZAZBVUH'
 AWS_STORAGE_BUCKET_NAME = 'courtbot'
