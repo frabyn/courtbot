@@ -7,4 +7,5 @@ pytz==2019.3
 sqlparse==0.3.1
 uwsgi>=2.0,<2.1
 dj-database-url>=0.5,<0.6
-whitenoise
+django-storages==1.9.1
+boto3
