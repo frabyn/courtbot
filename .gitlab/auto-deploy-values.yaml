@@ -1,4 +1,4 @@
 deploymentApiVersion: apps/v1
- controller:
-  config: 
-    {"client-body-buffer-size": "7m"}
+
+controller:
+  config: {"client-body-buffer-size": "7m"}
