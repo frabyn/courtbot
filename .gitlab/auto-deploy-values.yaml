@@ -3,3 +3,4 @@ deploymentApiVersion: apps/v1
 ingress:
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "8m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300s"
