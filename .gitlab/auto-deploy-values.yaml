@@ -1,4 +1,5 @@
 deploymentApiVersion: apps/v1
 
-controller:
-  config:  {"client-body-buffer-size": "8000k"}
+ingress:
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 8m
