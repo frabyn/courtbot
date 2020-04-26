@@ -1,13 +1,4 @@
-# This file is a template, and might need editing before it works on your project.
-# Auto DevOps
-# This CI/CD configuration provides a standard pipeline for
-# * building a Docker image (using a buildpack if necessary),
-# * storing the image in the container registry,
-# * running tests from a buildpack,
-# * running code quality analysis,
-# * creating a review app for each topic branch,
-# * and continuous deployment to production
-#
+
 # Test jobs may be disabled by setting environment variables:
 # * test: TEST_DISABLED
 # * code_quality: CODE_QUALITY_DISABLED
@@ -54,6 +45,7 @@ variables:
   DOCKER_TLS_CERTDIR: ""  # https://gitlab.com/gitlab-org/gitlab-runner/issues/4501
 
 stages:
+  - debug
   - build
   - test
   - deploy  # dummy stage to follow the template guidelines
@@ -68,6 +60,10 @@ stages:
   - incremental rollout 100%
   - performance
   - cleanup
+
+debug:
+  stage: debug
+  
 
 workflow:
   rules:

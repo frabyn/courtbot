@@ -16,10 +16,15 @@ class Case(models.Model):
     charge = models.CharField(max_length=25, blank=False)
     felony_pending = models.BooleanField(blank=True, null=True)
     last_updated = models.DateField(auto_now=True)
-
+    
     def next_appearance_required(self):
         required_appearances = ['JTRL', 'PTMO', 'ARRG']
         if self.next_setting_type in required_appearances:
             return True
         else:
             return False
+
+class DataFile(models.Model):
+    # Save raw data uploads for auditing
+    # Added benefit of smaller files
+    zipfile = models.FileField(upload_to='data-files/')
