@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'doitlive' # os.getenv('COURTBOT_SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*.harriscountycourt.info',
+ALLOWED_HOSTS = ['frabyn.pythonanywhere.com',
                  "localhost", "127.0.0.1", '*']
 
 
