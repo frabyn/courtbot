@@ -61,7 +61,17 @@ def upload_court_data(request):
 
 
 def upload_data(request):
-    
+    if request.method == 'POST':
+        form = UploadDataForm(request.POST, request.FILES)
+        if form.is_valid():
+            csv_to_model_obj(form.cleaned_data['file'], Case)
+    else:
+        form = UploadDataForm()
+
+    return render(
+        request, 'case_manager/upload.html', context={
+            'form': form,
+        })
 
 def case_search(request):
     if request.method == 'POST':
