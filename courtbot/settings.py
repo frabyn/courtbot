@@ -26,7 +26,7 @@ SECRET_KEY = 'doitlive' # os.getenv('COURTBOT_SECRET')
 DEBUG = True
 
 ALLOWED_HOSTS = ['frabyn.pythonanywhere.com',
-                 "localhost", "127.0.0.1", '*']
+                 'localhost', '127.0.0.1']
 
 
 # Application definition
