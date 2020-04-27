@@ -8,7 +8,8 @@ from .models import Case, DataFile
 class UploadFileForm(forms.Form):
     title = forms.HiddenInput()
     file = forms.FileField()
-    
+
+
 class UploadDataFile(ModelForm):
     
     class Meta:
