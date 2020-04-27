@@ -13,6 +13,7 @@ class UploadDataFile(ModelForm):
     
     class Meta:
         model = DataFile
+        fields = ['zipfile']
 
 
 class CaseSearchForm(ModelForm):
