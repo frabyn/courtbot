@@ -52,13 +52,13 @@ def upload_court_data(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             csv_to_model_obj(form.cleaned_data['file'], Case)
+            messages.success(request, "File uploaded")
     else:
         form = UploadFileForm()
 
     return render(
         request, 'case_manager/upload.html', context={
-            'form': form
-            'messages': messages,
+            'form': form,
         })
 
 
