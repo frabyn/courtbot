@@ -64,12 +64,12 @@ def upload_court_data(request):
 
 def upload_data(request):
     if request.method == 'POST':
-        form = UploadDataForm(request.POST, request.FILES)
+        form = UploadDataFile(request.POST, request.FILES)
         if form.is_valid():
             form.save()
         
     else:
-        form = UploadDataForm()
+        form = UploadDataFile()
 
     return render(
         request, 'case_manager/upload.html', 
