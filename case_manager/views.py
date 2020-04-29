@@ -2,12 +2,13 @@ import csv
 
 from django.shortcuts import render
 from django.views.generic import DetailView
+from django.contrib import messages
 # from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from io import TextIOWrapper
 
 from paper_pusher.models import CourtForm
-from .forms import UploadFileForm, UploadDataFile, CaseSearchForm
+from .forms import UploadFileForm, UploadDataForm, CaseSearchForm
 from .models import Case
 
 
@@ -56,10 +57,24 @@ def upload_court_data(request):
 
     return render(
         request, 'case_manager/upload.html', context={
-            'form': form,
+            'form': form
+            'messages': messages,
         })
 
 
+def upload_data(request):
+    if request.method == 'POST':
+        form = UploadDataForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+        
+    else:
+        form = UploadDataForm()
+
+    return render(
+        request, 'case_manager/upload.html', 
+        context={'form': form, 
+        })
 
 def case_search(request):
     if request.method == 'POST':
