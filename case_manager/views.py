@@ -67,7 +67,7 @@ def upload_data(request):
         form = UploadDataFile(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-        
+            messages.success(request, "File uploaded")
     else:
         form = UploadDataFile()
 
