@@ -8,7 +8,7 @@ from datetime import datetime
 from io import TextIOWrapper
 
 from paper_pusher.models import CourtForm
-from .forms import UploadFileForm, UploadDataForm, CaseSearchForm
+from .forms import UploadFileForm, UploadDataFile, CaseSearchForm
 from .models import Case
 
 
