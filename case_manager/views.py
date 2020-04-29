@@ -9,7 +9,7 @@ from io import TextIOWrapper
 
 from paper_pusher.models import CourtForm
 from .forms import UploadFileForm, UploadDataFile, CaseSearchForm
-from .models import Case
+from .models import Case, DataFile
 
 
 def index(request):
@@ -70,10 +70,13 @@ def upload_data(request):
             messages.success(request, "File uploaded")
     else:
         form = UploadDataFile()
+    
+    recent_data_files = DataFile.objects.all()[:5]
 
     return render(
         request, 'case_manager/upload.html', 
         context={'form': form, 
+        'recent_data_files': recent_data_files
         })
 
 def case_search(request):
