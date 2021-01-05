@@ -78,13 +78,8 @@ WSGI_APPLICATION = 'courtbot.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'courtbot_admin@courtbot',
-        'PASSWORD': 'Y4CuUfqe6zEbeLCpDuuw2yAxoXWTBHhKCDMhgjbY',
-        'HOST': 'courtbot.postgres.database.azure.com',
-        'PORT': '5432',
-
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'courtbot_db',
     }
 }
 
@@ -127,17 +122,8 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 7864320
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_S3_ENDPOINT_URL = 'https://courtbot.us-east-1.linodeobjects.com'
-AWS_ACCESS_KEY_ID = 'P46GRQNF2S8YP2MH1OSI'
-AWS_SECRET_ACCESS_KEY = 'xNVIdNcu0E6O4XGJvC78CV8Ciylkx4DtsZAZBVUH'
-AWS_STORAGE_BUCKET_NAME = 'courtbot'
-AWS_DEFAULT_ACL = 'public-read'
-AWS_QUERYSTRING_AUTH = False
-
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
