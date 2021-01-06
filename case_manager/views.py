@@ -113,8 +113,4 @@ class CaseDetail(DetailView):
 
 
 def docket(request):
-    today_cases = get_list_or_404(Case, next_setting=date.today(), court='008')
-    return render(
-        request,
-        'case_manager/search.html',
-        context={'results': today_cases})
+    today_cases = get_list_or_404(Case, next_setting=date.today())
