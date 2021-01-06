@@ -117,4 +117,4 @@ def docket(request):
     return render(
         request,
         'case_manager/search.html',
-        context={'results': today_cases}
+        context={'results': today_cases})
