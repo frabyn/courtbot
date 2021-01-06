@@ -1,10 +1,10 @@
 import csv
 
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
 from django.views.generic import DetailView
 from django.contrib import messages
 # from django.contrib.auth.decorators import login_required
-from datetime import datetime
+from datetime import datetime, date, timedelta
 from io import TextIOWrapper
 
 from paper_pusher.models import CourtForm
@@ -111,3 +111,10 @@ class CaseDetail(DetailView):
         context['form_list'] = CourtForm.objects.all()
         return context
 
+
+def docket(request):
+    today_cases = get_list_or_404(Case, next_setting=date.today(), court='008')
+    return render(
+        request,
+        'case_manager/search.html',
+        context={'results': today_cases}
