@@ -1,5 +1,9 @@
 from django.db import models
 
+# The Case model reflects data available via the 
+# "CCL Master Export" file at http://jdwprod/
+
+# Notable shortcomings here: No attorney SPN field
 
 class Case(models.Model):
     court = models.CharField(max_length=3)
@@ -17,11 +21,20 @@ class Case(models.Model):
     felony_pending = models.BooleanField(blank=True, null=True)
     last_updated = models.DateField(auto_now=True)
     
-    def next_appearance_required(self):
-        required_appearances = ['JTRL', 'PTMO', 'ARRG']
-        if self.next_setting_type in required_appearances:
+    def next_appearance_defendant(self):
+        defendant_appearances = ['JTRL', 'CTRL', 'ARRG']
+        if self.next_setting_type in defendant_appearances:
             return True
         else:
+            return False
+            
+    def next_appearance_attorney(self):
+        attorney_appearances = ['DISP', 'PTCR']
+        if self.next_setting_type in attorney_appearances:
+            return True
+        elif self.next_appearance_defendant() is True:
+            return True
+        else: 
             return False
 
 class DataFile(models.Model):

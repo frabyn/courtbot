@@ -48,7 +48,7 @@
                             <div>
                                 <p class="heading">Appearance Required?</p>
                                 <p class="title">
-                                    {% if object.next_appearance_required == True %} Yes
+                                    {% if object.next_appearance_defendant == True %} Yes
                                     {% else %} No
                                     {% endif %}
                                 </p>
@@ -56,7 +56,7 @@
                         </div>
                     </nav>
 
-                    {% if object.next_appearance_required == True %}
+                    {% if object.next_appearance_defendant == True %}
 
                         <div class="card-content">
                             <article class="message is-danger">
