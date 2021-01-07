@@ -113,9 +113,11 @@ class CaseDetail(DetailView):
 
 
 def docket(request):
-    today_cases = get_list_or_404(Case, next_setting=date.today())
+    today = datetime.today()
+    today_cases = Case.objects.filter(next_setting=today, court='8').order_by('defendant_name')
     return render(
         request, 
-        'case_manager/search.html',
-        context={'results': today_cases}
+        'case_manager/docket.html',
+        context={'results': today_cases,
+    }
     )
