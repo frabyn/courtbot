@@ -114,10 +114,10 @@ class CaseDetail(DetailView):
 
 def docket(request):
     today = datetime.today()
-    today_cases = Case.objects.filter(next_setting=today, court='8').order_by('defendant_name')
+    results = Case.objects.filter(next_setting=today, court='8').order_by('defendant_name')
     return render(
         request, 
         'case_manager/docket.html',
-        context={'results': today_cases,
+        context={'results': results,
     }
     )

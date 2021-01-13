@@ -32,6 +32,7 @@ class Case(models.Model):
         attorney_appearances = ['DISP', 'PTCR']
         if self.next_setting_type in attorney_appearances:
             return True
+        # If the defendant has to appear, so does the lawyer
         elif self.next_appearance_defendant() is True:
             return True
         else: 

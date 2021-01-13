@@ -23,6 +23,8 @@
                 <th></th>
             </tr>
             {% for r in results %}
+            
+            {% if r.next_setting_type == 'DISP' %}
             <tr>
                 <td style="vertical-align:middle">{{r.defendant_name}}</td>
                 <td style="vertical-align:middle">{{r.cause_number}}</td>
@@ -38,8 +40,10 @@
                     </div>
                 </td>
             </tr>
+            {% endif %}
             {% endfor %}
         </table>
+        
     </div>
 </div>
 
