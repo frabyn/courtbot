@@ -13,19 +13,28 @@
                 </span>
                         <h1 class="title card-header-title">
                             Case # {{ object.cause_number }}<br />
-                            County Criminal Court at Law #{{ object.court }}
                         </h1>
                     </div>
                     <div class="card-content">
                         <table class="table">
                             <tr>
                                 <td>
-                            <span class="icon">
-                                <i class="fas fa-balance-scale"></i>
-                            </span>
+                                    <span class="icon">
+                                        <i class="fas fa-file"></i>
+                                    </span>
                                 </td>
                                 <td>
                                     <p class="subtitle is-large">State vs. {{ object.defendant_name }}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="icon">
+                                        <i class="fa fa-balance-scale"></i>
+                                    </span>
+                                </td>
+                                <td>
+                                    <p class="subtitle is-large">County Criminal Court at Law #{{ object.court }}
                                 </td>
                             </tr>
                         </table>
