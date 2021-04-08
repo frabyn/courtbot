@@ -19,8 +19,12 @@ def index(request):
 def csv_to_model_obj(csvfile, model):
     csvfile = TextIOWrapper(csvfile, encoding='utf-8-sig')
     dialect = csv.Sniffer().sniff(csvfile.read(1024))
-    # After reading ahead in the file, reset to beginning
-    csvfile.seek(0)
+
+    # After reading ahead in the file for the dialect
+    # Skip to the beginning of the data, which for our file
+    # Happens to be exactly 77 bytes
+
+    csvfile.seek(77)
 
     reader = csv.DictReader(csvfile, dialect=dialect)
 
