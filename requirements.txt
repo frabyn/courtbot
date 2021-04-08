@@ -5,7 +5,4 @@ pytz
 sqlparse
 uwsgi
 psycopg2
-
-# Required for PythonAnywhere .env config
-# https://help.pythonanywhere.com/pages/environment-variables-for-web-apps
 python-dotenv
