@@ -43,7 +43,7 @@ def csv_to_model_obj(csvfile, model):
             'charge': row['offense_description'],
             'felony_pending': row['felony_pending_flag'],
         }
-        obj, created = Case.objects.update_or_create(
+        obj, created = Case.cases.update_or_create(
             cause_number=cm_cas, defaults=new_data)
 
 
@@ -71,21 +71,22 @@ def upload_data(request):
             messages.success(request, "File uploaded")
     else:
         form = UploadDataFile()
-    
-    recent_data_files = DataFile.objects.all()[:5]
+
+    recent_data_files = DataFile.files.all()[:5]
 
     return render(
-        request, 'case_manager/upload.html', 
-        context={'form': form, 
-        'recent_data_files': recent_data_files
-        })
+        request, 'case_manager/upload.html',
+        context={'form': form,
+                 'recent_data_files': recent_data_files
+                 })
+
 
 def case_search(request):
     if request.method == 'POST':
         form = CaseSearchForm(request.POST, request.FILES)
         if form.is_valid():
             defendant_name = str(form.cleaned_data['defendant_name']).upper()
-            results = Case.objects.filter(
+            results = Case.cases.filter(
                 defendant_name__startswith=defendant_name)[:25]
             return render(
                 request,
@@ -115,10 +116,11 @@ class CaseDetail(DetailView):
 
 def docket(request):
     today = datetime.today()
-    results = Case.objects.filter(next_setting=today, court='8').order_by('defendant_name')
+    results = Case.cases.filter(
+        next_setting=today, court='8').order_by('defendant_name')
     return render(
-        request, 
+        request,
         'case_manager/docket.html',
         context={'results': results,
-    }
+                 }
     )

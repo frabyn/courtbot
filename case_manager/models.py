@@ -7,6 +7,9 @@ from django.db import models
 # Notable shortcomings here: No attorney SPN field
 
 class Case(models.Model):
+
+    cases = models.Manager()
+
     court = models.CharField(max_length=3)
     defendant_name = models.CharField(max_length=30, blank=False)
     cause_number = models.CharField(max_length=7, primary_key=True)
@@ -44,3 +47,5 @@ class DataFile(models.Model):
     # Save raw data uploads for auditing
     # Added benefit of smaller files
     zipfile = models.FileField(upload_to='data-files/')
+
+    files = models.Manager()
