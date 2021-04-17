@@ -4,6 +4,7 @@ from django.shortcuts import render, get_list_or_404
 from django.views.generic import DetailView
 from django.contrib import messages
 # from django.contrib.auth.decorators import login_required
+
 from datetime import datetime, date, timedelta
 from io import TextIOWrapper
 
@@ -20,11 +21,7 @@ def csv_to_model_obj(csvfile, model):
     csvfile = TextIOWrapper(csvfile, encoding='utf-8-sig')
     dialect = csv.Sniffer().sniff(csvfile.read(1024))
 
-    # After reading ahead in the file for the dialect
-    # Skip to the beginning of the data, which for our file
-    # Happens to be exactly 77 bytes
-
-    csvfile.seek(77)
+    csvfile.seek(0)
 
     reader = csv.DictReader(csvfile, dialect=dialect)
 
