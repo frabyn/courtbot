@@ -152,3 +152,4 @@ media
 courtbot_db
 static_collected
 */migrations
+.vscode/launch.json
