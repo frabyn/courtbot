@@ -1,5 +1,6 @@
 .idea
 .DS_Store
+.vscode
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -152,4 +153,3 @@ media
 courtbot_db
 static_collected
 */migrations
-.vscode/launch.json
