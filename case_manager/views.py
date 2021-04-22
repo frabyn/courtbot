@@ -124,3 +124,14 @@ def docket(request):
         context={'results': results,
                  }
     )
+
+
+def trials(request):
+    results = Case.cases.filter(
+        next_setting_type='JTRL', court='8').order_by('next_setting')
+    return render(
+        request,
+        'case_manager/trials.html',
+        context={'results': results,
+                 }
+    )
