@@ -32,7 +32,9 @@ DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['frabyn.pythonanywhere.com',
                  'court8.harriscountycourt.info',
-                 'localhost', '127.0.0.1']
+                 'localhost',
+                 '127.0.0.1',
+                 ]
 
 
 # Application definition
