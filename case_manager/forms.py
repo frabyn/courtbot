@@ -11,25 +11,22 @@ class UploadFileForm(forms.Form):
 
 
 class UploadDataFile(ModelForm):
-    
     class Meta:
         model = DataFile
-        fields = ['zipfile']
+        fields = ["zipfile"]
 
 
 class CaseSearchForm(ModelForm):
-
     class Meta:
         model = Case
-        fields = ['defendant_name']
+        fields = ["defendant_name"]
         labels = {
-            'defendant_name': _(""),
+            "defendant_name": _(""),
         }
         help_texts = {
-            'defendant_name': _(""),
+            "defendant_name": _(""),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['defendant_name'].widget.attrs.update(
-            {'class': 'input is-medium'})
+        self.fields["defendant_name"].widget.attrs.update({"class": "input is-medium"})

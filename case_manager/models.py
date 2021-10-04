@@ -6,6 +6,7 @@ from django.db import models
 
 # Notable shortcomings here: No attorney SPN field
 
+
 class Case(models.Model):
 
     cases = models.Manager()
@@ -26,14 +27,14 @@ class Case(models.Model):
     last_updated = models.DateField(auto_now=True)
 
     def next_appearance_defendant(self):
-        defendant_appearances = ['JTRL', 'CTRL', 'ARRG']
+        defendant_appearances = ["JTRL", "CTRL", "ARRG"]
         if self.next_setting_type in defendant_appearances:
             return True
         else:
             return False
 
     def next_appearance_attorney(self):
-        attorney_appearances = ['DISP', 'PTCR']
+        attorney_appearances = ["DISP", "PTCR"]
         if self.next_setting_type in attorney_appearances:
             return True
         # If the defendant has to appear, so does the lawyer
@@ -46,6 +47,6 @@ class Case(models.Model):
 class DataFile(models.Model):
     # Save raw data uploads for auditing
     # Added benefit of smaller files
-    zipfile = models.FileField(upload_to='data-files/')
+    zipfile = models.FileField(upload_to="data-files/")
 
     files = models.Manager()

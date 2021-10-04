@@ -96,6 +96,15 @@
                         </a>
                     </p>
 
+                    <p class="control">
+                        <a class="is-white button" href="{% url 'case_manager:trials' %}">
+                                <span class="icon">
+                                    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                </span>
+                            <span class="is-primary">Trial Calendar</span>
+                        </a>
+                    </p>
+
                     {% if user.is_staff %}
                         <p class="control">
                             <a class="is-white button" href="{% url 'case_manager:upload' %}">
