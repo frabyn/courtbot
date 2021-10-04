@@ -144,7 +144,7 @@ cython_debug/
 
 # static files generated from Django application using `collectstatic`
 media
-# static
+static_collected
 
 # Mac Development
 .nova
