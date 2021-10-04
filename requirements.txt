@@ -4,5 +4,4 @@ lxml
 pytz
 sqlparse
 uwsgi
-psycopg2-binary
 python-dotenv
