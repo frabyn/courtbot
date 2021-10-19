@@ -1,44 +1,47 @@
 {% extends "case_manager/base.html" %}
-{% block title %}Daily Docket — {{ block.super }}{% endblock %}
+{% block title %} Daily Docket — {{ block.super }} {% endblock %}
 {% block content %}
 
 <div class="section">
-    <div class="container">
-        <h1 class="title">Attorney Appearances for Today</h1>         
-        <h2 class="subtitle">The following cases require an attorney to check in.</h2>
-                    
-                    <table class="table is-bordered is-striped is-narrow is-fullwidth">
-                        <tr>
-                            <th>Name</th>
-                            <th>Case Number</th>
-                            <th>Lawyer</th>
-                            <th></th>
-                        </tr>
-        {% for r in results %}
-            {% if r.next_setting_type is 'PTCR' or 'PTMO' %}
+  <div class="container">
+    <h1 class="title">Cases Scheduled for {% now "l, F j, Y" %}</h1>
+    <h2 class="subtitle">
+      The following is an unofficial listing of cases scheduled to be heard in Court 8 today.
+    </h2>
+    <h2>
+    If you are a party or an attorney in one of these cases, you may click the "Check In" button for more information.
+    </h2>
 
-                <tr>
-                    <td style="vertical-align:middle">{{r.defendant_name}}</td>
-                    <td style="vertical-align:middle">{{r.cause_number}}</td>
-                    <td style="vertical-align:middle">{{r.defense_lawyer}}</td>
-                    <td style="text-align: center">
-                        <div class="buttons is-centered">
-                            <a class="is-blue button" href="{% url 'case_manager:view_case' r.pk %}">
-                                <span class="icon">
-                                    <i class="fas fa-balance-scale" aria-hidden="true"></i>
-                                </span>
-                                <span class="is-primary">Check In</span>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                {% endif %}
+    <table class="table is-bordered is-striped is-narrow is-fullwidth">
+      <tr>
+        <th>Name</th>
+        <th>Case Number</th>
+        <th>Lawyer</th>
+        <th></th>
+      </tr>
+      {% for r in results %} {% if r.next_setting_type is 'PTCR' or 'PTMO' %}
 
-
-            {% endfor %}
-        </table>
-        
-    </div>
+      <tr>
+        <td style="vertical-align: middle">{{r.defendant_name}}</td>
+        <td style="vertical-align: middle">{{r.cause_number}}</td>
+        <td style="vertical-align: middle">{{r.defense_lawyer}}</td>
+        <td style="text-align: center">
+          <div class="buttons is-centered">
+            <a
+              class="is-blue button"
+              href="{% url 'case_manager:view_case' r.pk %}"
+            >
+              <span class="icon">
+                <i class="fas fa-balance-scale" aria-hidden="true"></i>
+              </span>
+              <span class="is-primary">Check In</span>
+            </a>
+          </div>
+        </td>
+      </tr>
+      {% endif %} {% endfor %}
+    </table>
+  </div>
 </div>
 
 {% endblock %}

@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}Harris County Criminal Court at Law # 8{% endblock %}</title>
+    <title>{% block title %}Harris County Criminal Court at Law # 8{% endblock %} - Judge Franklin Bynum</title>
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'case_manager/favicon.ico' %}" />
     <link rel="stylesheet" href="{% static 'case_manager/styles.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
@@ -157,6 +157,22 @@
     <!-- everything outside this gets inherited by the extended template -->
 
 {% endblock %}
+
 </body>
+
+<footer>
+<div class="section">
+    <div class="container">
+        <article class="message is-warning">
+            <div class="message-header">
+                <p>Unofficial Records</p>
+            </div>
+            <div class="message-body">
+Information provided is an unofficial listing of court schedule information, for the convenience of the parties and the public. Official records are kept exclusively by the Harris County District Clerk.
+            </div>
+        </article>
+    </div>
+    </div>
+</footer>
 
 </html>

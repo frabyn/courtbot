@@ -1,14 +1,17 @@
-{% extends "case_manager/base.html" %} {% block title %}Daily Docket — {{
-block.super }}{% endblock %} {% block content %}
+{% extends "case_manager/base.html" %}
+{% block title %}Trial Calendar — {{ block.super }} {% endblock %} 
+{% block content %}
 
 <div class="section">
   <div class="container">
     <h1 class="title">Cases set for trial</h1>
     <h2 class="subtitle">
-      The following cases are set for jury trial Court 8 usually schedules jury
-      trials for Tuesday mornings at 8:30 a.m. Currently, jury selection opccurs
-      at NRG Arena.
+      The following cases are set for jury trial in Court 8. For more
+      information, contact the attorney listed for the case.
     </h2>
+    <h3>
+      Court 8 currently has {{ results.count }} cases scheduled for jury trial.
+    </h3>
 
     <table class="table is-bordered is-striped is-narrow is-fullwidth">
       <tr>
