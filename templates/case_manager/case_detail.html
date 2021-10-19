@@ -50,13 +50,13 @@
                         <div class="level-item has-text-centered">
                             <div>
                                 <p class="heading">Next Court Type</p>
-                                <p class="title">{{ object.next_setting_type }}</p>
+                                <p class="title">{{ object.get_next_setting_type_display }} ({{ object.next_setting_type }})</p>
                             </div>
                         </div>
 
                         <div class="level-item has-text-centered">
                             <div>
-                                <p class="heading">Appearance Required?</p>
+                                <p class="heading">Defendant Appearance Required?</p>
                                 <p class="title">
                                     {% if object.next_appearance_defendant == True %} Yes
                                     {% else %} No

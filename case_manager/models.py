@@ -11,6 +11,15 @@ class Case(models.Model):
 
     cases = models.Manager()
 
+    setting_types = (
+        ("JTRL", "Jury Trial"),
+        ("PTMO", "Pre-trial Motions"),
+        ("PTCR", "Pre-trial Conference"),
+        ("ARRG", "Arraignment"),
+        ("NTRL", "Non-trial Setting"),
+        ("FELP", "Felony Pending"),
+    )
+
     court = models.CharField(max_length=3)
     defendant_name = models.CharField(max_length=30, blank=False)
     cause_number = models.CharField(max_length=7, primary_key=True)
@@ -19,7 +28,9 @@ class Case(models.Model):
     defendant_status = models.CharField(max_length=10)
     bail = models.CharField(max_length=10)
     bond_type = models.CharField(max_length=1, blank=True)
-    next_setting_type = models.CharField(max_length=4, blank=False)
+    next_setting_type = models.CharField(
+        max_length=4, blank=False, choices=setting_types
+    )
     defense_lawyer = models.CharField(max_length=30, blank=True)
     next_setting = models.DateField()
     charge = models.CharField(max_length=30, blank=False)
