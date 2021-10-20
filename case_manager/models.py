@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 
 # The Case model reflects data available via the
@@ -18,6 +19,11 @@ class Case(models.Model):
         ("ARRG", "Arraignment"),
         ("NTRL", "Non-trial Setting"),
         ("FELP", "Felony Pending"),
+        ("DISM", "Dismissal Pending"),
+        ("DPIH", "DWI Pre-trial Intervention Application Pending"),
+        ("PTIH", "Pre-trial Intervention Application Pending"),
+        ("DISP", "Disposition Attorney Conference"),
+        ("NTRL", "Non-trial Attorney Conference"),
     )
 
     court = models.CharField(max_length=3)
@@ -54,6 +60,13 @@ class Case(models.Model):
         else:
             return False
 
+    def checkin_eligible(self):
+        today = date.today()
+        if self.next_setting == today:
+            return True
+        else:
+            return False
+
 
 class DataFile(models.Model):
     # Save raw data uploads for auditing
@@ -61,3 +74,21 @@ class DataFile(models.Model):
     zipfile = models.FileField(upload_to="data-files/")
 
     files = models.Manager()
+
+
+class CheckIn(models.Model):
+
+    checkins = models.Manager()
+
+    case = models.ForeignKey(Case, on_delete=models.CASCADE)
+
+    roles = (
+        ("Defendant"),
+        ("Defense Attorney"),
+        ("Prosecutor"),
+    )
+
+    ready_for_trial = models.BooleanField(blank=True, null=True)
+    discovery_complete = models.BooleanField(blank=True, null=True)
+    defendant_phone = models.CharField(max_length=10, blank=True, null=True)
+    defense_atty_phone = models.CharField(max_length=10, blank=True, null=True)

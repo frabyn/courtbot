@@ -66,7 +66,35 @@
                         </div>
                     </nav>
 
+                    {% if object.checkin_eligible == True %}
+                        <div class="card-content">
+                            <article class="message is-success">
+                                <div class="message-header">
+                                    <p>Check In Eligible</p>
+                                </div>
+                                <div class="message-body">
+                                                        <div class="columns is-vcentered">
+                        <div class="column is-four-fifths">
 
+                                    <p>This case is eligible for online checkin for the defendant, defense lawyer, and prosecutor.</p>
+                            </div>
+                            <div class="column">
+                                <p class="control">
+                                <a class="is-white button" href="{% url 'case_manager:docket' %}">
+                                <span class="icon">
+                                    <i class="fas fa-check-square" aria-hidden="true"></i>
+                                </span>
+                                <span class="is-primary">Check In</span>
+                            </a>
+                        </p>
+                        </div>
+                        </div>
+
+                                </div>
+                            </article>
+                        </div>
+
+                    {% endif %}
 
                     {% if object.next_appearance_defendant == True %}
 
