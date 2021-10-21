@@ -20,10 +20,10 @@ class Case(models.Model):
         ("NTRL", "Non-trial Setting"),
         ("FELP", "Felony Pending"),
         ("DISM", "Dismissal Pending"),
-        ("DPIH", "DWI Pre-trial Intervention Application Pending"),
-        ("PTIH", "Pre-trial Intervention Application Pending"),
-        ("DISP", "Disposition Attorney Conference"),
-        ("NTRL", "Non-trial Attorney Conference"),
+        ("DPIH", "DWI PTI Application Pending"),
+        ("PTIH", "PTI Application Pending"),
+        ("DISP", "Disposition Conference"),
+        ("NTRL", "Non-trial Conference"),
     )
 
     court = models.CharField(max_length=3)
