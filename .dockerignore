@@ -1,5 +1,7 @@
 # Don't add nginx config 
 /nginx
+/static_collected
+/venv
 
 # Ignoring git and cache folders
 .git
