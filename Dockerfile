@@ -1,4 +1,6 @@
-FROM python:3.7-slim
+# syntax=docker/dockerfile:1
+
+FROM python:latest-slim
 
 # Create a group and user to run our app
 ARG APP_USER=appuser
@@ -13,7 +15,7 @@ RUN set -ex \
     && RUN_DEPS=" \
     libpcre3 \
     mime-support \
-    postgresql-client \
+    sqlite3-dev \
     " \
     && seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} \
     && apt-get update && apt-get install -y --no-install-recommends $RUN_DEPS \
@@ -31,7 +33,6 @@ RUN set -ex \
     && BUILD_DEPS=" \
     build-essential \
     libpcre3-dev \
-    libpq-dev \
     " \
     && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS \
     && pip install --no-cache-dir -r /requirements.txt \
@@ -40,9 +41,9 @@ RUN set -ex \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy your application code to the container (make sure you create a .dockerignore file if any large files or directories should be excluded)
-RUN mkdir /code/
-WORKDIR /code/
-ADD . /code/
+RUN mkdir /app/
+WORKDIR /app/
+ADD . /app/
 
 # uWSGI will listen on this port
 EXPOSE 5000
@@ -71,6 +72,7 @@ USER ${APP_USER}:${APP_USER}
 # Uncomment after creating your docker-entrypoint.sh
 # ENTRYPOINT ["/code/docker-entrypoint.sh"]
 
+RUN python manage.py makemigrations
 RUN python manage.py migrate --noinput
 
 # Start uWSGI

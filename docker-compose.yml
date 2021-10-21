@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+
+  courtbot:
+    build: .
+    restart: always
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+#    environment:
+#      - DJANGO_SECRET_KEY=
+
+  nginx:
+    build: ./nginx
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./static_collected:/app/static
+    depends_on:
+      - courtbot
