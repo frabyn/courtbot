@@ -18,6 +18,10 @@ def index(request):
     return render(request, "case_manager/index.html")
 
 
+def checkin(request):
+    return render(request, "case_manager/index.html")
+
+
 def csv_to_model_obj(csvfile, model):
     csvfile = TextIOWrapper(csvfile, encoding="utf-8-sig")
     dialect = csv.Sniffer().sniff(csvfile.read(1024))
@@ -65,24 +69,6 @@ def upload_court_data(request):
         context={
             "form": form,
         },
-    )
-
-
-def upload_data(request):
-    if request.method == "POST":
-        form = UploadDataFile(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "File uploaded")
-    else:
-        form = UploadDataFile()
-
-    recent_data_files = DataFile.files.all()[:5]
-
-    return render(
-        request,
-        "case_manager/upload.html",
-        context={"form": form, "recent_data_files": recent_data_files},
     )
 
 

@@ -1,3 +1,5 @@
+from pyexpat import model
+from re import T
 from django.db import models
 from datetime import date
 
@@ -80,7 +82,7 @@ class CheckIn(models.Model):
 
     checkins = models.Manager()
 
-    case = models.ForeignKey(Case, on_delete=models.CASCADE)
+    case = models.ForeignKey("Case", on_delete=models.CASCADE)
 
     roles = (
         ("Defendant"),
@@ -90,5 +92,15 @@ class CheckIn(models.Model):
 
     ready_for_trial = models.BooleanField(blank=True, null=True)
     discovery_complete = models.BooleanField(blank=True, null=True)
+
+    # Defendant Check-in Information
+    #
+    # As designed, the defendant is the only one to say whether they are in court
+    # Assumed here is that attorneys will check in with court staff
+    defendant_in_court = models.BooleanField(blank=True, null=True)
+    defendant_rep_name = models.CharField(max_length=30, blank=True, null=True)
     defendant_phone = models.CharField(max_length=10, blank=True, null=True)
+
+    # Defense Attorney Check-in Information
     defense_atty_phone = models.CharField(max_length=10, blank=True, null=True)
+    defense_atty_sub_name = models.CharField(max_length=30, blank=True, null=True)
