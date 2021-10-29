@@ -9,3 +9,21 @@ courtbot_db
 # Ignoring git and cache folders
 .git
 .cache
+
+node_modules
+npm-debug.log
+Dockerfile*
+docker-compose*
+.dockerignore
+.git
+.gitignore
+.env
+*/bin
+*/obj
+README.md
+LICENSE
+.vscode
+env
+static/frontend
+**/__pycache__
+**/*.pyc
