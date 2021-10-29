@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM python:latest-slim
+FROM python:3-slim
 
 # Create a group and user to run our app
 ARG APP_USER=appuser
