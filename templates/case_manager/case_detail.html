@@ -3,172 +3,151 @@
 
 {% block content %}
 
-    <div class="section">
-        <div class="container">
-            {% if object %}
-                <div class="card">
-                    <div class="card-header">
+<div class="section">
+    <div class="container">
+        {% if object %}
+        <div class="card">
+            <div class="card-header">
                 <span class="card-header-icon">
                     <i class="title fas fa-folder-open"></i>
                 </span>
-                        <h1 class="title card-header-title">
-                            Case # {{ object.cause_number }}<br />
-                        </h1>
+                <h1 class="title card-header-title">
+                    Case # {{ object.cause_number }}<br />
+                </h1>
+            </div>
+            <div class="card-content">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <span class="icon">
+                                <i class="fa fa-file"></i>
+                            </span>
+                        </td>
+                        <td>
+                            <p class="subtitle is-large">State vs. {{ object.defendant_name }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="icon">
+                                <i class="fa fa-balance-scale"></i>
+                            </span>
+                        </td>
+                        <td>
+                            <p class="subtitle is-large">County Criminal Court at Law #{{ object.court }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <nav class="level">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Next Court Date</p>
+                        <p class="title">{{ object.next_setting }}</p>
                     </div>
-                    <div class="card-content">
-                        <table class="table">
-                            <tr>
-                                <td>
-                                    <span class="icon">
-                                        <i class="fa fa-file"></i>
-                                    </span>
-                                </td>
-                                <td>
-                                    <p class="subtitle is-large">State vs. {{ object.defendant_name }}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="icon">
-                                        <i class="fa fa-balance-scale"></i>
-                                    </span>
-                                </td>
-                                <td>
-                                    <p class="subtitle is-large">County Criminal Court at Law #{{ object.court }}
-                                </td>
-                            </tr>
-                        </table>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Next Court Type</p>
+                        <p class="title">{{ object.get_next_setting_type_display }} ({{ object.next_setting_type }})</p>
                     </div>
+                </div>
 
-                    <nav class="level">
-                        <div class="level-item has-text-centered">
-                            <div>
-                                <p class="heading">Next Court Date</p>
-                                <p class="title">{{ object.next_setting }}</p>
-                            </div>
-                        </div>
-                        <div class="level-item has-text-centered">
-                            <div>
-                                <p class="heading">Next Court Type</p>
-                                <p class="title">{{ object.get_next_setting_type_display }} ({{ object.next_setting_type }})</p>
-                            </div>
-                        </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Defendant Appearance Required?</p>
+                        <p class="title">
+                            {% if object.next_appearance_defendant == True %} Yes
+                            {% else %} No
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </nav>
 
-                        <div class="level-item has-text-centered">
-                            <div>
-                                <p class="heading">Defendant Appearance Required?</p>
-                                <p class="title">
-                                    {% if object.next_appearance_defendant == True %} Yes
-                                    {% else %} No
-                                    {% endif %}
-                                </p>
-                            </div>
-                        </div>
-                    </nav>
+            {% if object.checkin_eligible == True %}
+            <div class="card-content">
+                <article class="message is-success">
+                    <div class="message-header">
+                        <p>Check In Eligible</p>
+                    </div>
+                    <div class="message-body">
+                        <div class="columns is-vcentered">
+                            <div class="column is-four-fifths">
 
-                    {% if object.checkin_eligible == True %}
-                        <div class="card-content">
-                            <article class="message is-success">
-                                <div class="message-header">
-                                    <p>Check In Eligible</p>
-                                </div>
-                                <div class="message-body">
-                                                        <div class="columns is-vcentered">
-                        <div class="column is-four-fifths">
-
-                                    <p>This case is eligible for online checkin for the defendant, defense lawyer, and prosecutor.</p>
+                                <p>This case is eligible for online checkin for the defendant, defense lawyer, and
+                                    prosecutor.</p>
                             </div>
                             <div class="column">
                                 <p class="control">
-                                <a class="is-white button" href="{% url 'case_manager:docket' %}">
-                                <span class="icon">
-                                    <i class="fas fa-check-square" aria-hidden="true"></i>
-                                </span>
-                                <span class="is-primary">Check In</span>
-                            </a>
-                        </p>
-                        </div>
-                        </div>
-
-                                </div>
-                            </article>
-                        </div>
-
-                    {% endif %}
-
-                    {% if object.next_appearance_defendant == True %}
-
-                        <div class="card-content">
-                            <article class="message is-danger">
-                                <div class="message-header">
-                                    <p>Appearance Required</p>
-                                </div>
-                                <div class="message-body">
-                                    <p>The Defendant in the case must personally appear at the next scheduled court
-                                        date.</p>
-                                </div>
-                            </article>
-                        </div>
-                    {% else %}
-                        <div class="card-content">
-                            <article class="message is-warning">
-                                <div class="message-header">
-                                    <p>Appearance Not Required</p>
-                                </div>
-                                <div class="message-body">
-                                    <p>The next court date in this case is an attorney conference. The Defendant is not
-                                        required to appear.</p>
-                                </div>
-                            </article>
-                        </div>
-                    {% endif %}
-
-                    <div class="card-content">
-                        <article class="message is-info">
-                            <div class="message-header">
-                                <p>Defense Attorney Information</p>
+                                    <a class="is-white button" href="{% url 'case_manager:docket' %}">
+                                        <span class="icon">
+                                            <i class="fas fa-check-square" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="is-primary">Check In</span>
+                                    </a>
+                                </p>
                             </div>
-                            <div class="message-body">
-                                {% if object.defense_lawyer %}
-                                    <p>The defense lawyer of record is {{ object.defense_lawyer }}<p>
-                                    {% else %}
-                                    <p>No attorney on file for this case. Hired counsel must file the Attorney of Record
-                                        form via the Harris County District Clerk's KIOSK website. The Court will
-                                        appoint counsel at the next setting if hired counsel does
-                                        not enter an appearance.</p>
-                                {% endif %}
-                            </div>
-                        </article>
+                        </div>
+
                     </div>
+                </article>
+            </div>
 
-<!--
-                    <div class="card-content">
-                        <article class="message is-normal">
-                            <div class="message-header">
-                                <p>Available Forms</p>
-                            </div>
-                            <div class="message-body">
-                                {% if form_list %}
-                                        <ul class="fa-ul">
-                                            {% for form in form_list %}
-                                                <li><span class="fa-li"><i class="fas fa-file-word"></i></span> <a href="{% url 'paper_pusher:generate' form_pk=form.pk case_pk=object.pk %}">{{ form.name }}</a>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-
-                                {% else %}
-                                    <p>No forms found.</p>
-                                {% endif %}
-                            </div>
-                        </article>
-                    </div>
--->
-                </div>
-                </div>
-                </div>
             {% endif %}
+
+            {% if object.next_appearance_defendant == True %}
+
+            <div class="card-content">
+                <article class="message is-danger">
+                    <div class="message-header">
+                        <p>Appearance Required</p>
+                    </div>
+                    <div class="message-body">
+                        <p>The Defendant in the case must personally appear at the next scheduled court
+                            date.</p>
+                    </div>
+                </article>
+            </div>
+            {% else %}
+            <div class="card-content">
+                <article class="message is-warning">
+                    <div class="message-header">
+                        <p>Appearance Not Required</p>
+                    </div>
+                    <div class="message-body">
+                        <p>The next court date in this case is an attorney conference. The Defendant is not
+                            required to appear.</p>
+                    </div>
+                </article>
+            </div>
+            {% endif %}
+
+            <div class="card-content">
+                <article class="message is-info">
+                    <div class="message-header">
+                        <p>Defense Attorney Information</p>
+                    </div>
+                    <div class="message-body">
+                        {% if object.defense_lawyer %}
+                        <p>The defense lawyer of record is {{ object.defense_lawyer }}
+                        <p>
+                            {% else %}
+                        <p>No attorney on file for this case. Hired counsel must file the Attorney of Record
+                            form via the Harris County District Clerk's KIOSK website. The Court will
+                            appoint counsel at the next setting if hired counsel does
+                            not enter an appearance.</p>
+                        {% endif %}
+                    </div>
+                </article>
+            </div>
+
+        </div>
     </div>
-    </div>
-    </div>
+</div>
+{% endif %}
+</div>
+</div>
+</div>
 {% endblock %}

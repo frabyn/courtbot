@@ -9,7 +9,6 @@ from django.contrib import messages
 from datetime import datetime, date, timedelta
 from io import TextIOWrapper
 
-from paper_pusher.models import CourtForm
 from .forms import UploadFileForm, UploadDataFile, CaseSearchForm
 from .models import Case, DataFile
 
@@ -77,7 +76,8 @@ def case_search(request):
         form = CaseSearchForm(request.POST, request.FILES)
         if form.is_valid():
             defendant_name = str(form.cleaned_data["defendant_name"]).upper()
-            results = Case.cases.filter(defendant_name__startswith=defendant_name)[:25]
+            results = Case.cases.filter(
+                defendant_name__startswith=defendant_name)[:25]
             return render(
                 request,
                 "case_manager/search.html",

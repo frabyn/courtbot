@@ -20,5 +20,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('case_manager.urls'), name='home'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('court-forms/', include('paper_pusher.urls'))
 ]
