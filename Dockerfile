@@ -33,6 +33,7 @@ RUN set -ex \
     && BUILD_DEPS=" \
     build-essential \
     libpcre3-dev \
+    libxml2-dev \
     " \
     && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS \
     && pip install --no-cache-dir -r /requirements.txt \
