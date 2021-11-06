@@ -1,7 +1,3 @@
 Django
-docx-mailmerge
-lxml
-pytz
-sqlparse
 uwsgi
 python-dotenv
