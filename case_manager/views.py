@@ -98,7 +98,6 @@ class CaseDetail(DetailView):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the available forms
-        context["form_list"] = CourtForm.forms.all()
         return context
 
 
